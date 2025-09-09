@@ -1,0 +1,44 @@
+version: "3"
+services:
+  movie-tickets:
+    container_name: movie-container
+    build: ./movie-tickets
+    ports:
+      - "1212:80"
+    volumes:
+      - movie-volume:/usr/share/nginx/html
+    networks:
+      - movie-net
+
+  bus-tickets:
+    container_name: bus-container
+    build: ./bus-tickets
+    ports:
+      - "1313:80"
+    volumes:
+      - bus-volume:/usr/share/nginx/html
+    networks:
+      - bus-net
+
+  train-tickets:
+    container_name: train-container
+    build: ./train-tickets
+    ports:
+      - "1414:80"
+    volumes:
+      - train-volume:/usr/share/nginx/html
+    networks:
+      - train-net
+
+volumes:
+  movie-volume:
+  bus-volume:     
+  train-volume:
+
+networks:
+  movie-net:
+    driver: bridge
+  bus-net:
+    driver: bridge
+  train-net:
+    driver: bridge
